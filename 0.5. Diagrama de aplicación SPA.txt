@@ -1,0 +1,32 @@
+participant browser
+participant server
+participant user
+
+user->browser: Enter URL https://studies.cs.helsinki.fi/exampleapp/
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/
+activate server
+server-->>browser: HTML document (SPA)
+deactivate server
+
+Note right of browser: El navegador analiza el HTML y carga los recursos de CSS, JS
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+activate server
+server-->>browser: the css file
+deactivate server
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+activate server
+server-->>browser: the JavaScript file
+deactivate server
+
+Note right of browser: El código JavaScript configura la aplicación de página única (SPA) y puede realizar solicitudes adicionales de datos.
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+activate server
+server-->>browser: [{ "content": "tefanns", "date": "2023-11-26T22:12:40.489Z" }, ... ]
+deactivate server
+
+Note right of browser: El (SPA) actualiza la interfaz de usuario  y muestra las notas.
+

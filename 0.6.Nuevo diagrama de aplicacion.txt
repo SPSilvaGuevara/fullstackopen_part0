@@ -1,0 +1,16 @@
+participant browser
+participant server
+participant user
+
+Note over user: User interacts with the Single Page Application (SPA)
+
+user->browser: Ingresa nota contenida en "text field"
+
+user->browser: Click en el boton "Save" 
+
+browser->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+activate server
+server-->>browser: Success response (201 created)
+deactivate server
+
+Note right of browser: El SPA también puede actualizar y validar del lado del cliente antes de enviar la solicitud.

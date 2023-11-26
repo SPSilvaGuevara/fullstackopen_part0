@@ -1,0 +1,16 @@
+participant browser
+participant server
+
+browser->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+activate server
+server-->>browser: Success response (201 Found)
+deactivate server
+
+Note right of browser: El navegador sigue la direccion a /exampleapp/notes
+
+browser->server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+activate server
+server-->>browser: [{ "content": "tefanns", "date": "2023-11-26T22:12:40.489Z" }, ... ]
+deactivate server
+
+Note right of browser: El navegador puede actualizar y realizar alguna validacion a la interfaz de usuario con la nueva nota.
